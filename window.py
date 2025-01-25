@@ -3,8 +3,8 @@ from shapes import Line
 
 class Window():
     def __init__(self, height, width, title="Maze Solver"):
-        self.width = width  # Save the width
-        self.height = height  # Save the height
+        self.width = width
+        self.height = height
 
         self.__root = Tk()
         self.__root.title(title)

@@ -1,21 +1,20 @@
 from window import Window
-from shapes import Point, Line
+from cell import Cell
 
 def main():
+    # Create a window
     win = Window(800, 600)
     
-    # First, create some points
-    point1 = Point(100, 100)
-    point2 = Point(700, 500)
+    # Create cells of different sizes/positions
+    cell1 = Cell(win, 50, 100, 50, 100)  # top-left cell
+    cell1.draw("red")
     
-    # Then create a line using those points
-    my_line = Line(point1, point2)
-    
-    # Now draw the line
-    win.draw_line(my_line, 'black')
-    
+    # Create adjacent cell with shared wall removed
+    cell2 = Cell(win, 100, 150, 50, 100)  # cell to the right
+    cell2.has_left_wall = False  # remove shared wall
+    cell2.draw("blue")
+
     win.wait_for_close()
-    
 
 if __name__ == "__main__":
     main()
