@@ -8,9 +8,10 @@ class Window():
 
         self.__root = Tk()
         self.__root.title(title)
-        
         self.__root.geometry(f"{self.width}x{self.height}")
         self.__root.protocol("WM_DELETE_WINDOW", self.close)
+
+        self._bg_color = self.__root.cget('bg')
         
         self.__canvas = Canvas(self.__root, width=self.width, height=self.height)
         self.__canvas.pack(fill=BOTH, expand=True)
@@ -27,5 +28,6 @@ class Window():
         self.is_running = True
         while self.is_running:
             self.redraw()
+            
     def close(self):
         self.is_running = False
