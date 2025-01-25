@@ -1,19 +1,13 @@
 from window import Window
-from cell import Cell
+from maze import Maze
 
 def main():
     # Create a window
-    win = Window(800, 600)
-    
-    # Create cells of different sizes/positions
-    cell1 = Cell(win, 50, 100, 50, 100)  # top-left cell
-    cell1.draw("red")
-    
-    # Create adjacent cell with shared wall removed
-    cell2 = Cell(win, 100, 150, 50, 100)  # cell to the right
-    cell2.has_left_wall = False  # remove shared wall
-    cell2.draw("blue")
-
+    win = Window(800, 800)
+    num_cols = 12
+    num_rows = 10
+    # Create Maze
+    m1 = Maze(100, 100, num_rows, num_cols, 10, 10, win)
     win.wait_for_close()
 
 if __name__ == "__main__":
