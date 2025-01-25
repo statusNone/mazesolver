@@ -1,7 +1,7 @@
 from shapes import Point, Line
 
 class Cell:
-    def __init__(self, win, x1, x2, y1, y2):
+    def __init__(self, win=None, x1=None, x2=None, y1=None, y2=None):
         self.has_left_wall = True
         self.has_right_wall = True
         self.has_top_wall = True
@@ -13,6 +13,8 @@ class Cell:
         self._win = win
 
     def draw(self, fill_color):
+        if self._win is None:
+            return
         if self.has_left_wall:
             line = Line(Point(self._x1, self._y1), Point(self._x1, self._y2))
             self._win.draw_line(line, fill_color)
