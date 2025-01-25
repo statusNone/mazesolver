@@ -27,13 +27,10 @@ class Cell:
             self._win.draw_line(line, fill_color)
 
     def draw_move(self, to_cell, undo=False):
-        if undo:
-            line = Line(self.get_center(), to_cell.get_center())
-            self._win.draw_line(line, 'grey')
-        else:
-            line = Line(self.get_center(), to_cell.get_center())
-            self._win.draw_line(line, 'red')
-
+        color = 'grey' if undo else 'red'
+        line = Line(self.get_center(), to_cell.get_center())
+        self._win.draw_line(line, color)
+            
     def get_center(self):
         center_x = (self._x1 + self._x2) / 2
         center_y = (self._y1 + self._y2) / 2
