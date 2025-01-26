@@ -17,7 +17,7 @@ class Tests(unittest.TestCase):
 
         # Check if specific keys exist
         self.assertIn((0, 0), m1._cells)
-        self.assertIn((num_cols - 1, num_rows - 1), m1._cells)
+        self.assertIn((num_rows - 1, num_cols - 1), m1._cells)
 
     def test_maze_create_cells_large(self):
         num_cols = 16
@@ -32,7 +32,18 @@ class Tests(unittest.TestCase):
 
         # Check if specific keys exist
         self.assertIn((0, 0), m1._cells)
-        self.assertIn((num_cols - 1, num_rows - 1), m1._cells)
+        self.assertIn((num_rows - 1, num_cols - 1), m1._cells)
+
+    def test_maze_reset_cells_visited(self):
+        num_cols = 12
+        num_rows = 10
+        m1 = Maze(0, 0, num_rows, num_cols, 10, 10)
+        for (i, j) in m1._cells.keys():
+                self.assertEqual(
+                    m1._cells[(i, j)].visited,
+                    False,
+                )
+
 
 if __name__ == "__main__":
     unittest.main()

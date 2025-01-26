@@ -8,6 +8,8 @@ class Wall:
         self._is_present = True
 
     def draw(self):
+        if self._win is None:
+            return
         color = 'black' if self._is_present else self._win._bg_color
         self._win.draw_line(Line(self._start, self._end), color)
 
@@ -23,6 +25,7 @@ class Cell:
         self._top_wall = None
         self._bottom_wall = None
         self._win = win
+        self.visited = False
 
     def update_walls(self, x1, x2, y1, y2):
         self._left_wall = Wall(Point(x1, y1), Point(x1, y2), self._win)
@@ -44,6 +47,11 @@ class Cell:
         self._win.draw_line(line, color)
             
     def get_center(self):
-        center_x = (self._x1 + self._x2) / 2
-        center_y = (self._y1 + self._y2) / 2
+        # Can use any wall's points, let's use left wall
+        start = self._left_wall._start
+        # Could use either right wall's start or left wall's end for the x2
+        end = self._right_wall._start
+        center_x = (start.x + end.x) / 2
+        center_y = (start.y + end.y) / 2
         return Point(center_x, center_y)
+    
