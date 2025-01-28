@@ -1,19 +1,20 @@
 from window import Window
-from cell import Cell
+from maze import Maze
+import sys
 
 def main():
-    # Create a window
-    win = Window(800, 600)
-    
-    # Create cells of different sizes/positions
-    cell1 = Cell(win, 50, 100, 50, 100)  # top-left cell
-    cell1.draw("red")
-    
-    # Create adjacent cell with shared wall removed
-    cell2 = Cell(win, 100, 150, 50, 100)  # cell to the right
-    cell2.has_left_wall = False  # remove shared wall
-    cell2.draw("blue")
+    num_rows = 12
+    num_cols = 12
+    margin = 50
+    screen_x = 800
+    screen_y = 800
+    cell_size_x = (screen_x - 2 * margin) / num_cols
+    cell_size_y = (screen_y - 2 * margin) / num_rows
 
+    sys.setrecursionlimit(10000)
+    win = Window(screen_x, screen_y)
+
+    maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win, 10)
     win.wait_for_close()
 
 if __name__ == "__main__":
