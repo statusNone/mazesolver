@@ -57,7 +57,6 @@ class Maze():
         self._cells[(self._num_rows - 1, self._num_cols - 1)]._right_wall.remove()
 
     def _get_possible_moves(self, i, j):
-        """Get unvisited neighboring cells."""
         offsets = {
             'up': (i - 1, j),
             'down': (i + 1, j),
@@ -71,7 +70,6 @@ class Maze():
         }
 
     def _break_walls_r(self, i, j):
-        """Recursively generate a maze by breaking walls between cells."""
         self._cells[(i, j)].visited = True
 
         while True:
@@ -96,12 +94,10 @@ class Maze():
             self._break_walls_r(*neighbor.location)
 
     def _reset_cells_visited(self):
-        """Reset the visited status of all cells."""
         for cell in self._cells.values():
             cell.visited = False
 
     def _solve_r(self, i, j):
-        """Recursively solve the maze."""
         self._animate()
         self._cells[(i, j)].visited = True
 
@@ -132,6 +128,5 @@ class Maze():
         return False
 
     def solve(self):
-        """Solve the maze starting from the top-left corner."""
         self._reset_cells_visited()
         return self._solve_r(0, 0)
