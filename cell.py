@@ -19,7 +19,8 @@ class Wall:
         
 
 class Cell:
-    def __init__(self, win=None):
+    def __init__(self, x, y, win=None):
+        self.location = (x, y)
         self._right_wall = None
         self._left_wall = None
         self._top_wall = None
@@ -47,11 +48,7 @@ class Cell:
         self._win.draw_line(line, color)
             
     def get_center(self):
-        # Can use any wall's points, let's use left wall
-        start = self._left_wall._start
-        # Could use either right wall's start or left wall's end for the x2
-        end = self._right_wall._start
-        center_x = (start.x + end.x) / 2
-        center_y = (start.y + end.y) / 2
+        center_x = (self._left_wall._start.x + self._right_wall._start.x) / 2
+        center_y = (self._top_wall._start.y + self._bottom_wall._start.y) / 2
         return Point(center_x, center_y)
     
